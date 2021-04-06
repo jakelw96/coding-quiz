@@ -7,8 +7,32 @@
 header {
   display: flex;
 }
+
+.quiz-title {
+  justify-content: center;
+  margin-left: 35%;
+}
 /* Timer */
 .timer {
-  padding-left: 75%;
+  padding-left: 35%;
   font-size: 15px;
+}
+
+.question {
+  padding-top: 20%;
+  padding-left: 12%;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.btn-box {
+  padding-top: 5%;
+  padding-left: 43%;
+}
+
+.btn {
+  background-color: blue;
+  color: white;
+  font-size: 50px;
+  border-radius: 15px;
 }
