@@ -1,5 +1,66 @@
 var $timer = document.getElementById('timer');
-var timeLeft = 10;
+var timeLeft = 60;
+
+
+// array of questions
+var quizQuestions = [
+  {
+    question1: "What is the term used for when water vapor is converted back into liquid water?",
+    answers: {
+       a: "Evaporation",
+       b: "Condensation",
+       c: "Precipitation"
+    },
+    correctAnswer: "b"
+  },
+  {
+    question2: "What destructive storm forms over the ocean and then makes landfall in coastal states?",
+    answers: {
+       a: "Hurricane",
+       b: "Tornado",
+       c: "Squall"
+    },
+    correctAnswer: "a"
+  },
+  {
+    question3: "What is the type of storm that spawns a funnel shaped cloud and very strong winds?",
+    answers: {
+       a: "Snow storm",
+       b: "Dust-devil",
+       c: "Tornado"
+    },
+    correctAnswer: "c"
+  },
+  {
+    question4: "What type of cloud is most common and generally doesn't bring rain?",
+    answers: {
+       a: "Cumulus",
+       b: "Cirrus",
+       c: "Stratus"
+    },
+    correctAnswer: "a"
+  },
+  {
+    question5: "What type of destructive storm is generally formed in the winter and usually brings high winds and white-out conditions?",
+    answers: {
+       a: "Squall",
+       b: "Blizzard",
+       c: "Monsoon"
+    },
+    correctAnswer: "b"
+  },
+  {
+    question6: "What comes first: lightning or thunder?",
+    answers: {
+      a: "lightning",
+      b: "thunder"
+    },  
+  }    
+];
+
+// Score at start of quiz
+var score = 0;
+
 
 
 // Start time for quiz that will count down from 60
@@ -17,56 +78,11 @@ function timer() {
 }
 
 function startQuiz() {
-    var quizQuestions = [
-      {
-        question: "What is the term used for when water vapor is converted back into liquid water?",
-        answers: {
-           a: "Evaporation",
-           b: "Condensation",
-           c: "Precipitation"
-        },
-        correctAnswer: "b"
-      },
-      {
-        question: "What destructive storm forms over the ocean and then makes landfall in coastal states?",
-        answers: {
-           a: "Hurricane",
-           b: "Tornado",
-           c: "Squall"
-        },
-        correctAnswer: "a"
-      },
-      {
-        question: "What is the type of storm that spawns a funnel shaped cloud and very strong winds?",
-        answers: {
-           a: "Snow storm",
-           b: "Dust-devil",
-           c: "Tornado"
-        },
-        correctAnswer: "c"
-      },
-      {
-        question: "What type of cloud is most common and generally doesn't bring rain?",
-        answers: {
-           a: "Cumulus",
-           b: "Cirrus",
-           c: "Stratus"
-        },
-        correctAnswer: "a"
-      },
-      {
-        question: "What type of destructive storm is generally formed in the winter and usually brings high winds and white-out conditions?",
-        answers: {
-           a: "Squall",
-           b: "blizzard",
-           c: "monsoon"
-        },
-        correctAnswer: "b"
-      },
-      {
-          
-      }    
-    ]
+  $question = document.getElementById("question");
+  $question.textContent = ;
+  console.log($question);
+
+
 }
 
 
