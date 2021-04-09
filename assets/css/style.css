@@ -19,7 +19,7 @@ header {
 }
 
 #question {
-  padding-top: 20%;
+  padding-top: 12%;
   padding-left: 14%;
   font-size: 27px;
   font-weight: bold;
@@ -32,6 +32,19 @@ header {
 
 ul {
   list-style-type: none;
+}
+
+.btn1,
+.btn2,
+.btn3 {
+  padding-top: 5%;
+}
+
+#ans-btn1,
+#ans-btn2,
+#ans-btn3 {
+  font-size: 30px;
+  border-radius: 10px;
 }
 
 .btn-box {
