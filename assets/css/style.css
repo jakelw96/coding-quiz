@@ -14,13 +14,13 @@ header {
 }
 /* Timer */
 .timer {
-  padding-left: 35%;
+  padding-left: 42%;
   font-size: 15px;
 }
 
 #question {
+  text-align: center;
   padding-top: 12%;
-  padding-left: 14%;
   font-size: 27px;
   font-weight: bold;
 }
@@ -48,8 +48,7 @@ ul {
 }
 
 .btn-box {
-  padding-top: 5%;
-  padding-left: 43%;
+ text-align: center;
 }
 
 #btn {
@@ -57,4 +56,9 @@ ul {
   color: white;
   font-size: 50px;
   border-radius: 15px;
+}
+
+#correct-box {
+  text-align: center;
+  
 }
