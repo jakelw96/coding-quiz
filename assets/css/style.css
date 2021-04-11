@@ -27,7 +27,6 @@ header {
 
 .answers {
   padding-left: 30%;
-  padding-top: 5%;
 }
 
 ul {
@@ -80,4 +79,12 @@ ul {
   color: white;
   font-size: 25px;
   border-radius: 15px;
+}
+
+#correct-box {
+  color: blue;
+  font-size: 50px;
+  border-top: solid;
+  margin-right: 17%;
+  margin-left: 17%;
 }
