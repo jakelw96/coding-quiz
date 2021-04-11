@@ -1,12 +1,14 @@
 var $timer = document.getElementById('timer');
 var timeLeft = 10;
 var $currentQuestion = document.getElementById('question');
-//var $startBtn = document.getElementById('btn');
+var $startBtn = document.getElementById('btn');
 var $correctbox = document.getElementById('correct-box');
 var score = 0; 
 var $ans1 = document.getElementById('ans-btn1');
 var $ans2 = document.getElementById('ans-btn2');
 var $ans3 = document.getElementById('ans-btn3');
+
+
 
 
 // array of questions for the quiz
@@ -221,8 +223,46 @@ function startQuiz() {
   questionOne();
 }
 
+// Records score data with initials and triggers after all questions are answered or timer runs out
 function endQuiz() {
-  document.getElementById('btn').style.visibility = 'visible';
+  $ans1.remove();
+  $ans2.remove();
+  $ans3.remove();
+  $currentQuestion.textContent = `All finished! You scored ${score}/6 correct!`;
+
+  var $endQuiz = document.createElement('div');
+  $endQuiz.id = "end-quiz";
+  var $endQuizP = document.createElement('h3');
+  $endQuizP.id = "end-quiz-p";
+  var $endQuizInput = document.createElement('input');
+  $endQuizInput.id = "end-quiz-input";
+  var $endQuizBtn = document.createElement('button');
+  $endQuizBtn.id = "end-quiz-btn";
+
+  $endQuizP.textContent = "Please enter your initials to record your score:";
+  $endQuizInput.setAttribute("type", "text");
+  $endQuizBtn.textContent = "Submit";
+  $endQuiz.appendChild($endQuizP);
+  $endQuiz.appendChild($endQuizInput);
+  $endQuiz.appendChild($endQuizBtn);
+  document.getElementById("end-quiz-box").appendChild($endQuiz)
+
+  // Sets score and initials to local storage
+  $endQuizBtn.onclick = function() {
+    localStorage.setItem("Initials", $endQuizInput.value);
+    localStorage.setItem("Score", score);
+    location.href = ""
+
+  }
+
+ 
+  
+  
+  
+
+  
+  
+  
   
 }
 
@@ -256,6 +296,6 @@ function timer() {
 
 
 document.getElementById('btn').addEventListener("click", function(){
-  document.getElementById('btn').style.visibility='hidden';
+  $startBtn.style.visibility='hidden';
   startQuiz();
 });

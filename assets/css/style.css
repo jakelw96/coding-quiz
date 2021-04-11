@@ -48,7 +48,7 @@ ul {
 }
 
 .btn-box {
- text-align: center;
+  text-align: center;
 }
 
 #btn {
@@ -60,5 +60,24 @@ ul {
 
 #correct-box {
   text-align: center;
-  
+}
+
+#end-quiz {
+  text-align: center;
+  padding-top: 5%;
+}
+
+#end-quiz-p {
+  padding-bottom: 3%;
+}
+
+#end-quiz-input {
+  margin-right: 4%;
+}
+
+#end-quiz-btn {
+  background-color: blue;
+  color: white;
+  font-size: 25px;
+  border-radius: 15px;
 }
