@@ -1,5 +1,6 @@
 var $timer = document.getElementById('timer');
-var timeLeft = 10;
+var timer = null;
+var timeLeft = 45;
 var $currentQuestion = document.getElementById('question');
 var $startBtn = document.getElementById('btn');
 var $correctbox = document.getElementById('correct-box');
@@ -7,6 +8,10 @@ var score = 0;
 var $ans1 = document.getElementById('ans-btn1');
 var $ans2 = document.getElementById('ans-btn2');
 var $ans3 = document.getElementById('ans-btn3');
+$correctbox.style.visibility = 'hidden';
+$ans1.style.visibility = 'hidden';
+$ans2.style.visibility = 'hidden';
+$ans3.style.visibility = 'hidden';
 
 
 
@@ -72,18 +77,21 @@ function questionOne() {
   $ans1.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     questionTwo();
   }
 
   $ans2.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionTwo();
   } 
 
   $ans3.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionTwo();
   } 
   console.log(score)
@@ -99,18 +107,21 @@ function questionTwo() {
   $ans1.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionThree();
   }
 
   $ans2.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionThree();
   } 
 
   $ans3.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     questionThree();
   }
   console.log(score);
@@ -126,18 +137,21 @@ function questionThree() {
   $ans1.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionFour();
   }
 
   $ans2.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     questionFour();
   } 
 
   $ans3.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionFour();
   }
   console.log(score)
@@ -155,18 +169,21 @@ function questionFour() {
   $ans1.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     questionFive();
   }
 
   $ans2.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionFive();
   } 
 
   $ans3.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionFive();
   }
 }
@@ -181,18 +198,21 @@ function questionFive() {
   $ans1.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionSix();
   }
 
   $ans2.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     questionSix();
   }
   
   $ans3.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     questionSix();
   }
 }
@@ -207,29 +227,37 @@ function questionSix() {
   $ans1.onclick = function() {
     score++;
     $correctbox.textContent = "Correct!";
+    $correctbox.style.visibility = 'visible';
     endQuiz();
+    endTimer();
   }
 
   $ans2.onclick = function() {
     timeLeft -= 5;
     $correctbox.textContent = "Incorrect!";
+    $correctbox.style.visibility = 'visible';
     endQuiz();
+    endTimer();
   }
 }
 
 // Function that starts the quiz when start is clicked
 function startQuiz() {
-  timer();
+  $ans1.style.visibility = 'visible';
+  $ans2.style.visibility = 'visible';
+  $ans3.style.visibility = 'visible';
+  startTimer();
   questionOne();
 }
 
-// Records score data with initials and triggers after all questions are answered or timer runs out
+// Creates elements for storing data, stores in localStorage, then displays on scores page
 function endQuiz() {
+  $correctbox.style.visibility = 'hidden';
   $ans1.remove();
   $ans2.remove();
   $ans3.remove();
+  
   $currentQuestion.textContent = `All finished! You scored ${score}/6 correct!`;
-
   var $endQuiz = document.createElement('div');
   $endQuiz.id = "end-quiz";
   var $endQuizP = document.createElement('h3');
@@ -247,55 +275,50 @@ function endQuiz() {
   $endQuiz.appendChild($endQuizBtn);
   document.getElementById("end-quiz-box").appendChild($endQuiz)
 
-  // Sets score and initials to local storage
   $endQuizBtn.onclick = function() {
-    localStorage.setItem("Initials", $endQuizInput.value);
-    localStorage.setItem("Score", score);
-    location.href = ""
-
+    location.href = "./score-page.html"
+    var scoreStorage = {
+      initials: $endQuizInput.value,
+      score: score
+    };
+    localStorage.setItem("Name and Score", JSON.stringify(scoreStorage));
+    var scoreStorageRetrieve = JSON.parse(localStorage.getItem("Name and Score"));
+    console.log(scoreStorageRetrieve);
+    var scoreStorageDisplay = document.createTextNode(scoreStorageRetrieve);
+    
+    //Shows scores on scores html page
+    var $scoreList = document.querySelector('#score-list');
+    var $scoreListItem = document.createElement('li');
+    $scoreListItem.textContent = scoreStorageDisplay;
+    $scoreList.appendChild($scoreListItem);
+    
+    location.href = "./score-page.html"
   }
-
- 
-  
-  
-  
-
-  
-  
-  
-  
 }
 
-
-
-
-
-
-
-
-
-
-
 // Start time for quiz that will count down from 60
-function timer() {
-  var timeInt = setInterval(function() {
+function startTimer() {
+  var timer = setInterval(function() {
       if (timeLeft > 1) {
           $timer.textContent = "Time: " + timeLeft;
           timeLeft--;
       } else {
           $timer.textContent = "Time is up!";
-          clearInterval(timeInt);
+          clearInterval(timer);
           endQuiz();
       }
   }, 1000)
-
 }
 
+// to stop timer when user completes quiz before time is up
+function endTimer() {
+  clearInterval(timer)
+};
 
-
-
-
+// Button to start quiz
 document.getElementById('btn').addEventListener("click", function(){
   $startBtn.style.visibility='hidden';
   startQuiz();
 });
+
+
