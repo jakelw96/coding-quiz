@@ -94,7 +94,6 @@ function questionOne() {
     $correctbox.style.visibility = 'visible';
     questionTwo();
   } 
-  console.log(score)
 }
 
 // Question two function from quizQuestions
@@ -124,7 +123,6 @@ function questionTwo() {
     $correctbox.style.visibility = 'visible';
     questionThree();
   }
-  console.log(score);
 }
 
 // Question three function from quizQuestions
@@ -154,7 +152,6 @@ function questionThree() {
     $correctbox.style.visibility = 'visible';
     questionFour();
   }
-  console.log(score)
 }
 
 
@@ -282,27 +279,14 @@ function endQuiz() {
       score: score
     };
     localStorage.setItem("Name and Score", JSON.stringify(scoreStorage));
-    // var scoreStorageRetrieve = JSON.parse(localStorage.getItem("Name and Score"));
-    // // var scoreStorageDisplay = document.createTextNode(scoreStorageRetrieve);
     
     location.href = "./score-page.html"
-
-    // //Shows scores on scores html page
-    // var $scoreList = document.querySelector('#score-list');
-    // var score = document.createElement("ul")
-    // var $scoreListItem = document.createElement('li');
-    // $scoreListItem.textContent = ("Initials: " + scoreStorageRetrieve.initials + " " + "Score: " + scoreStorageRetrieve.score);
-    // console.log($scoreListItem)
-    // score.appendChild($scoreListItem);
-    // console.log(score)
-    // document.getElementById("score-storage").appendChild(score)
-    
   }
 }
 
 // Start time for quiz that will count down from 60
 function startTimer() {
-  var timer = setInterval(function() {
+   timer = setInterval(function() {
       if (timeLeft > 1) {
           $timer.textContent = "Time: " + timeLeft;
           timeLeft--;
