@@ -276,23 +276,27 @@ function endQuiz() {
   document.getElementById("end-quiz-box").appendChild($endQuiz)
 
   $endQuizBtn.onclick = function() {
-    location.href = "./score-page.html"
+    // location.href = "./score-page.html"
     var scoreStorage = {
       initials: $endQuizInput.value,
       score: score
     };
     localStorage.setItem("Name and Score", JSON.stringify(scoreStorage));
-    var scoreStorageRetrieve = JSON.parse(localStorage.getItem("Name and Score"));
-    console.log(scoreStorageRetrieve);
-    var scoreStorageDisplay = document.createTextNode(scoreStorageRetrieve);
-    
-    //Shows scores on scores html page
-    var $scoreList = document.querySelector('#score-list');
-    var $scoreListItem = document.createElement('li');
-    $scoreListItem.textContent = scoreStorageDisplay;
-    $scoreList.appendChild($scoreListItem);
+    // var scoreStorageRetrieve = JSON.parse(localStorage.getItem("Name and Score"));
+    // // var scoreStorageDisplay = document.createTextNode(scoreStorageRetrieve);
     
     location.href = "./score-page.html"
+
+    // //Shows scores on scores html page
+    // var $scoreList = document.querySelector('#score-list');
+    // var score = document.createElement("ul")
+    // var $scoreListItem = document.createElement('li');
+    // $scoreListItem.textContent = ("Initials: " + scoreStorageRetrieve.initials + " " + "Score: " + scoreStorageRetrieve.score);
+    // console.log($scoreListItem)
+    // score.appendChild($scoreListItem);
+    // console.log(score)
+    // document.getElementById("score-storage").appendChild(score)
+    
   }
 }
 
